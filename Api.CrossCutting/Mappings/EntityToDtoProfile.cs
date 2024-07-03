@@ -1,5 +1,5 @@
 
-using Api.Domain.Dtos;
+using Api.Domain.Dto;
 using Api.Domain.Entities;
 using AutoMapper;
 

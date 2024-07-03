@@ -1,5 +1,5 @@
 
-using Api.Domain.Dtos;
+using Api.Domain.Dto;
 
 namespace Api.Domain.Mappers
 {

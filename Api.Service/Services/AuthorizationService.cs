@@ -3,7 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Principal;
 
-using Api.Domain.Dtos;
+using Api.Domain.Dto;
 using Api.Domain.Mappers;
 using Api.Domain.Interfaces.Repositories;
 using Api.Domain.Interfaces.Services;
