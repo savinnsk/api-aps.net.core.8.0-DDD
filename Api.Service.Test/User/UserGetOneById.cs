@@ -1,3 +1,4 @@
+using Api.Domain.Dto;
 using Api.Domain.Interfaces.Services;
 using Moq;
 using Xunit.Sdk;
@@ -26,8 +27,29 @@ public class UserGetOne : UserMock
         Assert.NotNull(result);
         Assert.True(result.Id == Id);
         Assert.Equal(Name , result.Name);
+        
+        _userServiceMock = new Mock<IUserService>();
+        _userServiceMock.Setup(x => x.GetOne(It.IsAny<Guid>())).Returns(Task.FromResult((UserDto)null));
+        _userService = _userServiceMock.Object;
 
 
+        var resultNull = await _userService.GetOne(Id);
+
+        Assert.Null(resultNull);
+    }
+
+
+    [Fact(DisplayName = "Should_Return_Null_When_Id_not_match")]
+    public async Task Should_Return_Null_When_Id_not_match(){
+        
+        _userServiceMock = new Mock<IUserService>();
+        _userServiceMock.Setup(x => x.GetOne(It.IsAny<Guid>())).Returns(Task.FromResult((UserDto)null));
+        _userService = _userServiceMock.Object;
+
+
+        var resultNull = await _userService.GetOne(Id);
+
+        Assert.Null(resultNull);
     }
     
 }
