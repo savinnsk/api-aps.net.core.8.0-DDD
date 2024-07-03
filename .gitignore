@@ -1,0 +1,6 @@
+**/bin/
+**/obj/
+build
+**/*.db
+.vs
+.config
