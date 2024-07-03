@@ -2,7 +2,7 @@
 
 using System.ComponentModel.DataAnnotations;
 
-namespace Api.Domain.Dtos
+namespace Api.Domain.Dto
 {
     public class UserDto
     {

@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 
-namespace Api.Domain.Dtos
+namespace Api.Domain.Dto
 {
     public class LoginDto
     {
