@@ -1,6 +1,8 @@
+using System.Net;
 using Api.Aplication.Controllers;
 using Api.Domain.Dto;
 using Api.Domain.Interfaces.Services;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 
@@ -31,6 +33,35 @@ public class UserCreateTest
         Assert.NotNull(result);
         Assert.True(UserMock.UserDto.Id == value.Id);   
         Assert.Equal(UserMock.UserDto.Name , value.Name);
+        Assert.Equal(UserMock.UserDto.Email , value.Email);
+    
+    }
+
+
+    [Fact(DisplayName = "Should_Return_InternalServerError_When_UserService_Throws")]
+    public async void Should_Return_InternalServerError_When_UserService_Throws()
+    {
+
+        var userMock = new UserMock();
+        var  serviceMock = new Mock<IUserService>();
+
+        serviceMock.Setup(x => x.Create(UserMock.UserDto)).ThrowsAsync(new ArgumentException("Simulated exception"));
+
+        var _controller = new UsersController(serviceMock.Object);
+
+        Mock<IUrlHelper> url = new Mock<IUrlHelper>();
+        url.Setup(x => x.Link(It.IsAny<string>(),It.IsAny<object>())).Returns("http://test.com");
+
+        _controller.Url = url.Object;
+
+      
+        var result = await _controller.Create(UserMock.UserDto);
+  
+        var statusCodeResult = Assert.IsType<ObjectResult>(result);
+        Assert.Equal((int)HttpStatusCode.InternalServerError, statusCodeResult.StatusCode);
+        Assert.Equal("Simulated exception", (string)statusCodeResult.Value);
+  
+
     
     }
 }
