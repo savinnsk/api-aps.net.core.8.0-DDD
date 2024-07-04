@@ -71,7 +71,7 @@ namespace Api.Aplication.Controllers
             try {
 
                 var result = await this._userService.Create(user);
-
+                
                 return Ok(result);
 
              

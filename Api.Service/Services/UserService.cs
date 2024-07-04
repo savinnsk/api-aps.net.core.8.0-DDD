@@ -23,8 +23,7 @@ namespace Api.Service.Services
         {
             var userModel = _mapper.Map<UserModel>(user);
             var result = await _userRepository.InsertAsync(_mapper.Map<UserEntity>(userModel));
-            result.Password = null;
-
+           
             return _mapper.Map<UserDto>(result);
       
             
