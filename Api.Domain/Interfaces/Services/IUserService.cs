@@ -7,7 +7,7 @@ namespace Api.Domain.Interfaces.Services
 {
     public interface IUserService
     {
-    Task<UserDto> GetOne(Guid id);
+    Task<UserDto> GetOneById(Guid id);
     Task<IEnumerable<UserDto>> GetAll();
     Task<UserDto> Update(UserDto user);
     Task<UserDto> Create(UserDto user);

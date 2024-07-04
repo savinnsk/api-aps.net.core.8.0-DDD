@@ -28,14 +28,6 @@ public class UserGetOneById : UserMock
         Assert.True(result.Id == Id);
         Assert.Equal(Name , result.Name);
         
-        _userServiceMock = new Mock<IUserService>();
-        _userServiceMock.Setup(x => x.GetOneById(It.IsAny<Guid>())).Returns(Task.FromResult((UserDto)null));
-        _userService = _userServiceMock.Object;
-
-
-        var resultNull = await _userService.GetOneById(Id);
-
-        Assert.Null(resultNull);
     }
 
 

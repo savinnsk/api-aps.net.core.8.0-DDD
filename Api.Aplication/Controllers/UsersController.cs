@@ -50,7 +50,7 @@ namespace Api.Aplication.Controllers
             
             try {
 
-                var result = await this._userService.GetOne(id);
+                var result = await this._userService.GetOneById(id);
 
                 return Ok(result);
 
