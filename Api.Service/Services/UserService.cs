@@ -48,7 +48,7 @@ namespace Api.Service.Services
             return _mapper.Map<IEnumerable<UserDto>>(resultsArray);  
         }
 
-        public async Task<UserDto> GetOne(Guid id)
+        public async Task<UserDto> GetOneById(Guid id)
         {
             var result = await _userRepository.SelectAsync(id);
             result.Password = null;
