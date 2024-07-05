@@ -9,16 +9,16 @@
     <IsTestProject>true</IsTestProject>
   </PropertyGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\Api.Domain\Domain.csproj" />
+
+   <ItemGroup>
+    <ProjectReference Include="..\Api.Domain\Domain.csproj" />
       <ProjectReference Include="..\Api.Service\Service.csproj" />
-      <ProjectReference Include="..\Api.CrossCutting\CrossCutting.csproj" />
+      <ProjectReference Include="..\Api.Aplication\application.csproj" />
     </ItemGroup>
+
   <ItemGroup>
-    <PackageReference Include="Moq" Version="4.20.70" />
+      <PackageReference Include="Moq" Version="4.20.70" />
     <PackageReference Include="Faker.NETCore" Version="1.0.2" />
-    <PackageReference Include="AutoMapper" Version="13.0.1" />
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
     <PackageReference Include="xunit" Version="2.4.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
