@@ -12,6 +12,9 @@ public class UserMock
         Email = Faker.Internet.Email();
         Password = Faker.Internet.UserName();
         
+        
+        var newUserList = new List<UserDto>(); 
+
         for (int i = 0; i < 10; i++)
         {
             var dto = new UserDto(){
@@ -20,8 +23,9 @@ public class UserMock
                 Email = Faker.Internet.Email(),
                 Password = Faker.Internet.UserName(),
             };
-            userList.Add(dto);
+            newUserList.Add(dto);
         }
+            userList = newUserList;
 
         UserDto = new UserDto(){
             Id = Id,

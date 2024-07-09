@@ -6,7 +6,7 @@ using Moq;
 namespace Api.Service.Test.User;
 
 
-public class UserGetOneByAllTest : UserMock
+public class UserGetAllTest : UserMock
 {
 
     private IUserService _userService;
@@ -24,7 +24,7 @@ public class UserGetOneByAllTest : UserMock
         var result = await _userService.GetAll();
 
         Assert.NotNull(result);
-        Assert.Equal(result.Count(),10);
+        Assert.Equal(result.Count(),10 );
 
     }
 
