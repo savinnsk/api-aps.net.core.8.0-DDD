@@ -1,4 +1,4 @@
-using System.Net;
+﻿using System.Net;
 using Api.Aplication.Controllers;
 using Api.Domain.Dto;
 using Api.Domain.Interfaces.Services;
@@ -7,16 +7,16 @@ using Moq;
 
 namespace Api.Application.Test.User;
 
-public class UserCreateTest
+public class UserUpdateTest
 {
-    [Fact(DisplayName = "Should_Be_Able_Create_A_User")]
-    public async void Should_Be_Able_Create_A_User()
+    [Fact(DisplayName = "Should_Be_Able_Update_A_User")]
+    public async void Should_Be_Able_Update_A_User()
     {
 
         var userMock = new UserMock();
         var serviceMock = new Mock<IUserService>();
 
-        serviceMock.Setup(x => x.Create(UserMock.UserDto)).ReturnsAsync(UserMock.UserDto);
+        serviceMock.Setup(x => x.Update(UserMock.UserDto)).ReturnsAsync(UserMock.UserDto);
 
         var _controller = new UsersController(serviceMock.Object);
 
@@ -25,7 +25,7 @@ public class UserCreateTest
 
         _controller.Url = url.Object;
 
-        var result = await _controller.Create(UserMock.UserDto);
+        var result = await _controller.Update(UserMock.UserDto);
         var value = ((OkObjectResult)result).Value as UserDto;
 
         Assert.True(result is OkObjectResult);
@@ -43,7 +43,7 @@ public class UserCreateTest
         var userMock = new UserMock();
         var serviceMock = new Mock<IUserService>();
 
-        serviceMock.Setup(x => x.Create(UserMock.UserDto)).ThrowsAsync(new ArgumentException("Simulated exception"));
+        serviceMock.Setup(x => x.Update(UserMock.UserDto)).ThrowsAsync(new ArgumentException("Simulated exception"));
 
         var _controller = new UsersController(serviceMock.Object);
 
@@ -53,7 +53,7 @@ public class UserCreateTest
         _controller.Url = url.Object;
 
 
-        var result = await _controller.Create(UserMock.UserDto);
+        var result = await _controller.Update(UserMock.UserDto);
 
         var statusCodeResult = Assert.IsType<ObjectResult>(result);
         Assert.Equal((int)HttpStatusCode.InternalServerError, statusCodeResult.StatusCode);
@@ -67,7 +67,7 @@ public class UserCreateTest
         var userMock = new UserMock();
         var serviceMock = new Mock<IUserService>();
 
-        serviceMock.Setup(x => x.Create(UserMock.UserDto)).ReturnsAsync(UserMock.UserDto);
+        serviceMock.Setup(x => x.Update(UserMock.UserDto)).ReturnsAsync(UserMock.UserDto);
 
         var _controller = new UsersController(serviceMock.Object);
         _controller.ModelState.AddModelError("Field", "Field is required");
@@ -78,7 +78,7 @@ public class UserCreateTest
         _controller.Url = url.Object;
 
 
-        var result = await _controller.Create(UserMock.UserDto);
+        var result = await _controller.Update(UserMock.UserDto);
         var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
         var errorResponse = (SerializableError)badRequestResult.Value;
 
